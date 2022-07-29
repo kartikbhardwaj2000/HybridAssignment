@@ -4,8 +4,8 @@ const sellerRouter = require('./seller');
 const authRouter = require('./auth')
 const router = express.Router();
 
-router.use('/seller',buyerRouter);
-router.use('/buyer',sellerRouter);
+router.use('/seller',sellerRouter);
+router.use('/buyer',buyerRouter);
 router.use('/auth',authRouter)
 
 module.exports = router;

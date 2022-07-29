@@ -12,6 +12,7 @@ Environment variables are loaded from the .env file. Default values are present 
 If mongodb is not connecting, please cross check the mongo uri beeing set.
 ## How to run 
 ```sh
+npm i
 npm start
 ```
 

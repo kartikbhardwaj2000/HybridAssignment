@@ -1,7 +1,7 @@
 const { Mongoose, default: mongoose } = require('mongoose');
 const { SELLER } = require('../constants');
-const Order = require('../Modals/Order');
-const User = require('../Modals/User');
+const Order = require('../Modals/Order.modal');
+const User = require('../Modals/User.modal');
 const ApiError = require('../utils/error');
 
 exports.getListOfSellers = async(req,res,next) => {

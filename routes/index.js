@@ -1,7 +1,7 @@
 const express = require('express');
-const buyerRouter = require('./buyer');
-const sellerRouter = require('./seller');
-const authRouter = require('./auth')
+const buyerRouter = require('./buyer.route');
+const sellerRouter = require('./seller.route');
+const authRouter = require('./auth.route')
 const router = express.Router();
 
 router.use('/seller',sellerRouter);

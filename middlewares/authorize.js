@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const {jwtSecret} = require('../constants');
+const {JWT_SECRET} = require('../constants');
 const { use } = require('../routes');
 const ApiError = require('../utils/error');
 
@@ -8,7 +8,7 @@ module.exports = (authRole) => {
     return async (req,res,next) => {
         try {
             const token = req.headers['authorization'].split(' ')[1];
-            const decodedData = await jwt.verify(token,jwtSecret);
+            const decodedData = await jwt.verify(token,JWT_SECRET);
             if(decodedData.role!==authRole)
             {
                 throw new ApiError({status:401, message:'unauthorised'});

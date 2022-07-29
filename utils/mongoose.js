@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { mongoUri } = require('../constants');
+const { MONGO_URI } = require('../constants');
 
-mongoose.connect(mongoUri,(err) => {
+mongoose.connect(MONGO_URI,(err) => {
     if(err)
     {
         console.log('mongodb not connected');

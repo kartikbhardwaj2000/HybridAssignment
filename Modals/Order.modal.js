@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ProductSchema = require('./Product');
+const ProductSchema = require('./Product.modal');
 
 const { Schema } = mongoose;
 

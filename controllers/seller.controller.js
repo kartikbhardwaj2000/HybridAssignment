@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const Order = require("../Modals/Order");
-const User = require("../Modals/User");
+const Order = require("../Modals/Order.modal");
+const User = require("../Modals/User.modal");
 
 exports.postCreateCalatog= async (req,res,next) => {
     try {

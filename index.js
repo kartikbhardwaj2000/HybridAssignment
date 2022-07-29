@@ -10,7 +10,7 @@ const port = process.env.PORT||8000;
 app.use(express.json())
 app.use(routes);
 
-// app.use(validationError);
+app.use(validationError);
 app.use(converter);
 app.use(notFoundHandler);
 

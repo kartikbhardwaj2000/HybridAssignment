@@ -1,16 +1,18 @@
 const ApiError = require('../utils/error');
-const { isCelebrate } = require('celebrate')
+const { isCelebrateError } = require('celebrate')
+
 
 exports.validationError = (err,req,res,next) => {
-    if(!isCelebrate(err))
+    if(!isCelebrateError(err))
     {
         return next(err);
     }
     const { joi, meta } = err;
+    console.log(err);
     const error = new ApiError({
     message: 'Validation Error',
-    errors: joi.message,
-    status: httpStatus.BAD_REQUEST,
+    errors: err.errors,
+    status: 400,
   });
 
   return handler(error, req, res);

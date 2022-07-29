@@ -15,7 +15,11 @@ If mongodb is not connecting, please cross check the mongo uri beeing set.
 npm i
 npm start
 ```
-
+if everything is good you will see this
+```sh
+app is running at port 8000
+mongodb connection successfull
+```
 ## Features
 
 - Validations are set on API payload

@@ -6,10 +6,4 @@ class ApiError extends Error{
     }
 }
 
-try {
-    throw new ApiError({status:404,message:'Whoops!'})
-  } catch (e) {
-    console.error(e.name + ': ' + e.message+ e.statusCode)
-  }
-
 module.exports = ApiError;

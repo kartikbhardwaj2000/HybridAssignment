@@ -1,5 +1,6 @@
 const { Mongoose, default: mongoose } = require('mongoose');
 const { SELLER } = require('../constants');
+const Order = require('../Modals/Order');
 const User = require('../Modals/User');
 const ApiError = require('../utils/error');
 
@@ -43,6 +44,54 @@ exports.getSellerCatalog = async (req,res,next) => {
     }
 }
 
-exports.postCreateOrder = (req,res,next) => {
+exports.postCreateOrder = async (req,res,next) => {
+    try {
+        const sellerId = req.params.seller_id;
+        const buyerId = req.user.id;
+        const items =[];
+        const itemIds = req.body.items.map((id)=>{
+            return {
+                _id:mongoose.Types.ObjectId(id),
+                }
+            }
+        );
+        const query = itemIds.map(element => {
+            return {
+                catalog:{$elemMatch:element}
+            }
+        });
 
+        const seller = await User.findOne({_id:mongoose.Types.ObjectId(sellerId), $and:query});
+        if(!seller)
+        {
+            throw new ApiError({status:400, message:'invalid Details'});
+        }
+        req.body.items.forEach(id=>{
+            seller.catalog.forEach(item=>{
+                if(id===item._id.toString())
+                {
+                    items.push(item);
+                }
+            });
+        });
+        const order = await Order.create({
+            sellerId,
+            buyerId,
+            items
+        });
+        const response = {
+            status:200,
+            message:'order created successfully',
+            data:{
+                orderId:order._id,
+                createdAt:order.createdAt,
+                items:order.items
+            }
+        }
+        
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+    
 }

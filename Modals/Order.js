@@ -10,4 +10,4 @@ const OrderSchema = new Schema({
     createdAt:{type: Number, default: Date.now()}
 });
 
-module.exports = new mongoose.model(Order,OrderSchema);
+module.exports = new mongoose.model('Order',OrderSchema);

@@ -1,4 +1,5 @@
 const { default: mongoose } = require("mongoose");
+const Order = require("../Modals/Order");
 const User = require("../Modals/User");
 
 exports.postCreateCalatog= async (req,res,next) => {
@@ -24,6 +25,21 @@ exports.postCreateCalatog= async (req,res,next) => {
 
 }
 
-exports.getOrders = (req,res,next) => {
+exports.getOrders = async (req,res,next) => {
+    try{
+        const sellerId = req.user.id;
+        const orders = await Order.find({selledId:mongoose.Types.ObjectId(sellerId)});
+        
+        const response = {
+            status:200,
+            message:'orders fetched successfully',
+            data:orders
+        }
+        res.json(response);
+
+    } catch (error){
+        next(error);
+    }
+
 
 }
